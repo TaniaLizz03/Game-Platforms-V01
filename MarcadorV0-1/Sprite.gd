@@ -19,10 +19,10 @@ func _ready():
 	Score.connect("pause", self, "pause")
 	$gamble.interpolate_property(self, 'modulate:a',
 		null, 0.6, 1.0, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
-	$efecto_scale.interpolate_property(self, 'scale',
-		null, Score.SCALE*0.75, 0.25, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$efecto_scale.interpolate_property(self, 'transform',
+		null, Score.SCALE*0.50, 0.50, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$efecto_final.interpolate_property(self, 'modulate:a',
-		null, 0, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		null, 0, 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	spin = rand_range(-PI, PI)
 	set_position(Vector2(rand_range(250,screensize.x-250), rand_range(150,screensize.y-150)))
 	vel = Score.get_vel()
@@ -52,6 +52,7 @@ func _process(delta):
 func choosen(digit): # user-signal
 	selected = (digit == id)
 	if selected: $gamble.start()
+	
 
 func _on_efecto_final_tween_completed(_object, _key):
 	if selected: $gamble.stop_all()

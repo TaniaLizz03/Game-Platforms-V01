@@ -4,7 +4,7 @@ extends Node2D
 signal digit_key(digit)
 signal pause(mode)
 
-const SCALE = Vector2(0.3, 0.3)
+const SCALE = Vector2(0.2, 0.2)
 const NEG = -10
 const Ratio = [0, 20, 40, 60, 70, 80, 85, 90, 95, 100]
 const VX = [[50,80], [90,120], [130,150], [150,180], [190,220]]
@@ -24,7 +24,7 @@ const Digits = [
 var screenH
 var screenW
 var level = 1 #isse#8
-var score = 0
+var score = 3
 var left = 0
 var gamer = null
 var nwait = 0
@@ -64,12 +64,6 @@ func _input(event):
 					start()
 	#elif event is InputEventMouseButton:
 	#	print("Mouse Click/Unclick at: ", event.position)
-	elif event is InputEventMouseMotion:
-		posMouse.append(event.position)
-		if posMouse.size() > 15:
-			print(gamer, "-", sprites.size())
-			if gamer!=null: sprites[gamer].set_vel((Vector2(posMouse[-1] - posMouse[0]))/2)
-			posMouse = []
 			
 
 func get_vel():
